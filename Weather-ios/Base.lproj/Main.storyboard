@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Bold.ttf">
+            <string>Raleway-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Weather_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="FeV-WE-23A" userLabel="img background">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" background="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="wcb-aS-gzY" userLabel="edt search location">
+                                <rect key="frame" x="30" y="94" width="354" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="UO4-j2-Cnk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="edittingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="y7d-ou-oLt"/>
+                                </connections>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="10d" translatesAutoresizingMaskIntoConstraints="NO" id="VCd-Ob-Ojv" userLabel="img weather">
+                                <rect key="frame" x="238.5" y="169" width="145.5" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="UQJ-Gg-s9B"/>
+                                    <constraint firstAttribute="width" secondItem="VCd-Ob-Ojv" secondAttribute="height" multiplier="17:14" id="i6h-0Y-aDc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19°C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxZ-WV-tVw" userLabel="lbl degree">
+                                <rect key="frame" x="20" y="289" width="334" height="82"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="70"/>
+                                <color key="textColor" name="Text Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vietnam" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTC-S7-Yk2" userLabel="lbl localtion">
+                                <rect key="frame" x="20" y="396" width="334" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="19"/>
+                                <color key="textColor" name="Text Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mm0-mp-MZD">
+                                <rect key="frame" x="38" y="139" width="341" height="409"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-4"/>
+                                <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AutoCompleteCell" id="zrg-M9-m4E" customClass="AutoCompleteCell" customModule="Weather_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="341" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zrg-M9-m4E" id="Roz-Wg-42r">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wcb-aS-gzY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="4S0-cz-KzY"/>
+                            <constraint firstItem="FeV-WE-23A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6SL-Uc-q3M"/>
+                            <constraint firstItem="FeV-WE-23A" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="7aU-eS-Pgj"/>
+                            <constraint firstItem="uxZ-WV-tVw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VCd-Ob-Ojv" secondAttribute="trailing" constant="-30" id="EZe-8W-hdO"/>
+                            <constraint firstItem="uxZ-WV-tVw" firstAttribute="top" secondItem="VCd-Ob-Ojv" secondAttribute="bottom" id="F87-9n-kak"/>
+                            <constraint firstAttribute="top" secondItem="FeV-WE-23A" secondAttribute="top" id="HbF-g1-FqJ"/>
+                            <constraint firstItem="lTC-S7-Yk2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Hc5-lu-awA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wcb-aS-gzY" secondAttribute="trailing" constant="30" id="Lhm-Bm-xfG"/>
+                            <constraint firstItem="Mm0-mp-MZD" firstAttribute="trailing" secondItem="wcb-aS-gzY" secondAttribute="trailing" constant="-5" id="Ufn-kD-cOa"/>
+                            <constraint firstItem="Mm0-mp-MZD" firstAttribute="top" secondItem="wcb-aS-gzY" secondAttribute="bottom" id="Y0H-X3-3R5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VCd-Ob-Ojv" secondAttribute="trailing" constant="30" id="ewV-Qv-gaF"/>
+                            <constraint firstItem="Mm0-mp-MZD" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" id="gdl-iO-Ju3"/>
+                            <constraint firstItem="Mm0-mp-MZD" firstAttribute="leading" secondItem="wcb-aS-gzY" secondAttribute="leading" constant="8" id="lJ5-08-oSi"/>
+                            <constraint firstItem="wcb-aS-gzY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="oEA-xC-d43"/>
+                            <constraint firstItem="FeV-WE-23A" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="psZ-wV-2c5"/>
+                            <constraint firstItem="lTC-S7-Yk2" firstAttribute="top" secondItem="uxZ-WV-tVw" secondAttribute="bottom" constant="25" id="s47-Tw-A91"/>
+                            <constraint firstItem="uxZ-WV-tVw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="vAd-1I-7Sa"/>
+                            <constraint firstItem="VCd-Ob-Ojv" firstAttribute="top" secondItem="wcb-aS-gzY" secondAttribute="bottom" constant="30" id="vvF-l4-6cI"/>
+                            <constraint firstItem="lTC-S7-Yk2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VCd-Ob-Ojv" secondAttribute="trailing" constant="-30" id="vzm-Mv-crI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="edtLocationSearch" destination="wcb-aS-gzY" id="RrV-84-UVA"/>
+                        <outlet property="imgWeatherCondition" destination="VCd-Ob-Ojv" id="JXM-ND-Ias"/>
+                        <outlet property="lblLocation" destination="lTC-S7-Yk2" id="Afi-RK-lWv"/>
+                        <outlet property="lblTemperature" destination="uxZ-WV-tVw" id="kps-fR-STr"/>
+                        <outlet property="tblAutoComplete" destination="Mm0-mp-MZD" id="c9o-DC-vYB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="10d" width="50" height="50"/>
+        <image name="Background" width="1080" height="1920"/>
+        <image name="ic_search" width="314.33334350585938" height="39.666667938232422"/>
+        <namedColor name="Text Color">
+            <color red="0.15700000524520874" green="0.31499999761581421" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

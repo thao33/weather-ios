@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func download(fromUrl: String) {
-        let url = URL(string: fromUrl)
+    func loadImageFrom(url: String) {
+        let imageUrl = URL(string: url)
         DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
+            let data = try? Data(contentsOf: imageUrl!)
             DispatchQueue.main.async {
                 self.image = UIImage(data: data!)
             }

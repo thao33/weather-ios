@@ -8,30 +8,23 @@
 
 import Foundation
 
-protocol WeatherAPIDelegate {
-    func onGetWeatherFromAPIDone(_ weather : Weather)
-    func onGetWeatherFromAPIError(message : String)
-}
-
 class WeatherAPI {
     let REQUEST_OK = "200"
-    var delegate : WeatherAPIDelegate? = nil
     
     private func notifyError(message : String) {
         DispatchQueue.main.sync {
-//            self.delegate?.onError(message: message)
         }
     }
     
-    private func requestCompletion(data : Data?, response : URLResponse? , error : Error?) {
+    private func requestCompletion(data : Data?, response : URLResponse? , error : Error?) -> Weather {
         if ((error) != nil) {
             notifyError(message: error?.localizedDescription ?? "Unknown error")
-            return
+            return self.blankWeather()
         }
         
         if (data == nil) {
             notifyError(message: "Data is nil")
-            return
+            return self.blankWeather()
         }
 
         let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary
@@ -49,11 +42,15 @@ class WeatherAPI {
         if code != self.REQUEST_OK {
             let message = "sth went wrong"
             notifyError(message: message)
-            return
+            return self.blankWeather()
         }
 
         let weather = parseWeather(jWeather: json!)
-        self.delegate?.onGetWeatherFromAPIDone(weather)
+        return weather
+    }
+    
+    private func blankWeather() -> Weather {
+        return Weather()
     }
     
     private func parseWeather(jWeather  : NSDictionary) -> Weather {
@@ -64,15 +61,22 @@ class WeatherAPI {
     
         weather.location = jWeather.value(forKey: "name") as? String
         weather.temperature = mainWithTemperature.value(forKey: "temp") as? Double
+        
         weather.weatherConditionUrl = WeatherHelper.getURLWeatherFromIcon(iconCode)
         return weather
     }
     
-    public func getWeatherFromLocation(location: String) {
+    public func getWeatherFromLocation(location: String, completion: @escaping ( _ weather: Weather) -> Void) {
         var request = URLRequest(url: URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(location)&units=metric&appid=d7e833c8105f1c1cb33eb8dfe19615ac")!)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let session = URLSession.shared.dataTask(with: request, completionHandler: requestCompletion(data:response:error:))
+        let session = URLSession.shared.dataTask(with: request, completionHandler: {
+            (data, response, error) -> Void in
+            let weather = self.requestCompletion(data: data, response: response, error: error)
+            DispatchQueue.main.sync {
+                completion(weather)
+            }
+        })
         session.resume()
     }
     

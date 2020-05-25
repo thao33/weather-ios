@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -70,11 +70,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeJ-7b-5DB">
+                                <rect key="frame" x="336" y="64" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="onSearchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4ph-Zj-VIr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="wcb-aS-gzY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="4S0-cz-KzY"/>
                             <constraint firstItem="FeV-WE-23A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6SL-Uc-q3M"/>
+                            <constraint firstItem="AeJ-7b-5DB" firstAttribute="trailing" secondItem="wcb-aS-gzY" secondAttribute="trailing" id="6gz-bj-skO"/>
                             <constraint firstItem="FeV-WE-23A" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="7aU-eS-Pgj"/>
                             <constraint firstItem="uxZ-WV-tVw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VCd-Ob-Ojv" secondAttribute="trailing" constant="-30" id="EZe-8W-hdO"/>
                             <constraint firstItem="uxZ-WV-tVw" firstAttribute="top" secondItem="VCd-Ob-Ojv" secondAttribute="bottom" id="F87-9n-kak"/>
@@ -88,6 +96,7 @@
                             <constraint firstItem="Mm0-mp-MZD" firstAttribute="leading" secondItem="wcb-aS-gzY" secondAttribute="leading" constant="8" id="lJ5-08-oSi"/>
                             <constraint firstItem="wcb-aS-gzY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="oEA-xC-d43"/>
                             <constraint firstItem="FeV-WE-23A" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="psZ-wV-2c5"/>
+                            <constraint firstItem="wcb-aS-gzY" firstAttribute="top" secondItem="AeJ-7b-5DB" secondAttribute="bottom" id="qgr-Ja-xtT"/>
                             <constraint firstItem="lTC-S7-Yk2" firstAttribute="top" secondItem="uxZ-WV-tVw" secondAttribute="bottom" constant="25" id="s47-Tw-A91"/>
                             <constraint firstItem="uxZ-WV-tVw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="vAd-1I-7Sa"/>
                             <constraint firstItem="VCd-Ob-Ojv" firstAttribute="top" secondItem="wcb-aS-gzY" secondAttribute="bottom" constant="30" id="vvF-l4-6cI"/>

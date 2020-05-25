@@ -20,6 +20,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var weatherManager: WeatherManager? = nil
     var location : String = ""
     var suggestedLocationList: Array<String> = []
+    private var lastTyping : Double = 0
+    private let lock = NSLock()
+    private var lastRequestKeyword : String = ""
+    private var lastestIndex : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tblAutoComplete.isHidden = true
     }
 
+    @IBAction func onSearchPressed(_ sender: Any) {
+        let searchingKeyword = edtLocationSearch.text ?? "Vietnam"
+        lastestIndex = lastestIndex + 1
+        getSuggesstion("User", searchingKeyword)
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         0.0000001
     }
@@ -60,12 +70,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func edittingChanged(_ sender: Any) {
-        let tmpLocation : String = edtLocationSearch.text ?? ""
-        let isCurrentLocationBlank = location.count == 0
-        if  isCurrentLocationBlank || location != tmpLocation {
-            location = tmpLocation.copy() as! String
+        lastTyping = Date().timeIntervalSince1970
+        runTypingChecker()
+    }
+    
+    func runTypingChecker() {
+        let index = lastestIndex + 1
+        lastestIndex = index
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [unowned self] in
+            let currentTime = Date().timeIntervalSince1970
+            print("Amount time \(currentTime - self.lastTyping)")
+            
+            if (currentTime - self.lastTyping) < 1.5 {
+                print("Ignore request \(index)")
+                return
+            }
+            if index < self.lastestIndex {
+                print("Ignore request \(index)")
+                return
+            }
+            
+            print("Make request \(index)")
+            let searchingKeyword = self.edtLocationSearch.text ?? "Vietnam"
+            self.getSuggesstion("DispatchQueue", searchingKeyword)
         }
+    }
+    
+    private func getSuggesstion(_ sender : String, _ searchingKeyword : String) {
+//        lock.lock()
+        print("\(sender) getSuggesstion \(lastestIndex) - \(searchingKeyword)")
         let suggestedLocation = Weather.suggestedLocations()
+        let location = edtLocationSearch.text ?? ""
         self.suggestedLocationList = suggestedLocation.filter { (item) -> Bool in
             item.lowercased().contains(location.lowercased())
         }
@@ -77,7 +112,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tblAutoComplete.reloadData()
             tblAutoComplete.isHidden = false
         }
+//        lock.unlock()
     }
+    
+    private func makeRequest(keyword : String) {
+        lock.lock()
+        if keyword != lastRequestKeyword {
+            lastRequestKeyword = keyword
+            print("Let's request \(keyword)")
+        }else {
+            print("Ignore request \(keyword)")
+        }
+        lock.unlock()
+    }
+
     
     func showWeatherToScreen() {
         lblTemperature.text = weather?.celciusTemp(temp: weather?.temperature ?? 0.0)

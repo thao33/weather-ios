@@ -23,6 +23,7 @@
 		5FC8088E24377B9E007818F1 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F819F52242F98CE00BA331A /* Raleway-Bold.ttf */; };
 		5FF4A62C2437675C00F4B133 /* day.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5FF4A62B2437675C00F4B133 /* day.pdf */; };
 		5FF4A62E2437676500F4B133 /* night.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5FF4A62D2437676500F4B133 /* night.pdf */; };
+		BDB790EA247BA3E50031C867 /* TypingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB790E9247BA3E50031C867 /* TypingOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		5FC16DF5242F955F00C0FCAC /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
 		5FF4A62B2437675C00F4B133 /* day.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = day.pdf; sourceTree = "<group>"; };
 		5FF4A62D2437676500F4B133 /* night.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = night.pdf; sourceTree = "<group>"; };
+		BDB790E9247BA3E50031C867 /* TypingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		5FC16DCF242E1AA600C0FCAC /* Weather-ios */ = {
 			isa = PBXGroup;
 			children = (
+				BDB790E8247BA3C70031C867 /* Queue */,
 				5FF4A62A243766D500F4B133 /* Assets */,
 				5F819F53242F9A6300BA331A /* Fonts */,
 				5FC16DF4242F954600C0FCAC /* Extension */,
@@ -169,6 +172,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		BDB790E8247BA3C70031C867 /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				BDB790E9247BA3E50031C867 /* TypingOperation.swift */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +258,7 @@
 				5F0789B8243CC1D3004EBCD5 /* AutoCompleteCell.swift in Sources */,
 				5FC16DF6242F955F00C0FCAC /* ExtensionUIImageView.swift in Sources */,
 				5FC16DD5242E1AA600C0FCAC /* ViewController.swift in Sources */,
+				BDB790EA247BA3E50031C867 /* TypingOperation.swift in Sources */,
 				5FC16DF1242F576F00C0FCAC /* WeatherData.swift in Sources */,
 				5FC16DEC242F436500C0FCAC /* WeatherManager.swift in Sources */,
 				5FC16DEF242F4EA400C0FCAC /* WeatherAPI.swift in Sources */,
